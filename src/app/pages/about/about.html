@@ -1,1 +1,126 @@
-<p>about works!</p>
+<!-- ABOUT PAGE - Zeigt Angular Features LIVE in Aktion -->
+<section class="about-hero section">
+  <div class="container">
+    <div class="about-header">
+      <h1 class="about-title">
+        Über mich - <span class="text-gradient">Angular Entwickler</span>
+      </h1>
+      <p class="about-subtitle">
+        Hier siehst du nicht nur was ich kann, sondern <strong>wie</strong> Angular funktioniert - 
+        live programmiert und interaktiv!
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO: Komponenten-Wiederverwendung -->
+<section class="skills-demo section">
+  <div class="container">
+    <div class="demo-header">
+      <h2>🔧 Live Demo: Wiederverwendbare Komponenten</h2>
+      <p class="demo-description">
+        Diese Skill-Cards sind <strong>wiederverwendbare Angular-Komponenten</strong> mit 
+        <strong>Input/Output Properties</strong>, <strong>TypeScript Interfaces</strong> und 
+        <strong>OnPush Change Detection</strong> für maximale Performance.
+      </p>
+    </div>
+    
+    <!-- Category Tabs - Bidirektionale Datenbindung -->
+    <div class="category-tabs">
+      <button 
+        *ngFor="let category of categories" 
+        class="tab-button"
+        [class.active]="selectedCategory === category"
+        (click)="selectCategory(category)">
+        {{ category | titlecase }}
+        <span class="skill-count">({{ getSkillCount(category) }})</span>
+      </button>
+    </div>
+    
+    <!-- Skills Grid - Async Pipe & Observables -->
+    <div class="skills-grid">
+      <app-skill-card 
+        *ngFor="let skill of (getCurrentCategorySkills() | async); trackBy: trackBySkill; let i = index"
+        [skill]="skill"
+        [showDetails]="selectedSkill === skill.name"
+        [animationDelay]="i * 100"
+        (skillClicked)="onSkillClicked($event)"
+        (levelUpdated)="onLevelUpdated($event)">
+      </app-skill-card>
+    </div>
+    
+    <!-- Live Skill Statistics -->
+    <div class="skill-stats" *ngIf="skillStats">
+      <h3>📊 Live Statistiken (Updated via RxJS)</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{{ skillStats.totalSkills }}</span>
+          <span class="stat-label">Gesamte Skills</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ skillStats.averageLevel }}%</span>
+          <span class="stat-label">Durchschnittslevel</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ skillStats.expertSkills }}</span>
+          <span class="stat-label">Expert-Level</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ skillStats.totalExperience }}</span>
+          <span class="stat-label">Jahre Erfahrung</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Angular CLI Demo -->
+<section class="cli-demo section">
+  <div class="container">
+    <div class="demo-header">
+      <h2>⚡ Angular CLI - Automatisierte Entwicklung</h2>
+      <p>So wurde dieses Portfolio erstellt - mit Angular CLI Commands:</p>
+    </div>
+    
+    <div class="cli-commands">
+      <div class="command-block" *ngFor="let command of cliCommands; let i = index" 
+           [style.animation-delay]="i * 200 + 'ms'">
+        <div class="command-header">
+          <span class="command-icon">$</span>
+          <code class="command-text">{{ command.cmd }}</code>
+        </div>
+        <p class="command-description">{{ command.description }}</p>
+        <div class="command-result" *ngIf="command.result">
+          <strong>Ergebnis:</strong> {{ command.result }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TypeScript Features Demo -->
+<section class="typescript-demo section">
+  <div class="container">
+    <div class="demo-header">
+      <h2>🛡️ TypeScript - Type Safety in Aktion</h2>
+      <p>Alle Komponenten nutzen <strong>strenge TypeScript Typisierung</strong>:</p>
+    </div>
+    
+    <div class="code-examples">
+      <div class="code-block">
+        <h4>Interface Definition</h4>
+        <pre class="code"><code>{{typeScriptExamples.interface}}</code></pre>
+      </div>
+      
+      <div class="code-block">
+        <h4>Component mit Input/Output</h4>
+        <pre class="code"><code>{{typeScriptExamples.component}}</code></pre>
+      </div>
+      
+      <div class="code-block">
+        <h4>Service mit RxJS</h4>
+        <pre class="code"><code>{{typeScriptExamples.service}}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>

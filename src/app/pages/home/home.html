@@ -1,35 +1,105 @@
-<section class="hero">
+<section class="hero section">
+  <!-- Background Elements -->
+  <div class="hero-bg">
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+    <div class="floating-elements">
+      <div class="floating-element" *ngFor="let el of floatingElements; let i = index" 
+           [style.animation-delay]="i * 0.5 + 's'">
+      </div>
+    </div>
+  </div>
+  
   <div class="container">
-    <div class="hero-content">
+    <div class="hero-content animate-fadeInUp">
+      <!-- Greeting -->
+      <div class="hero-greeting">
+        <span class="font-mono text-gradient">Hi, ich bin</span>
+      </div>
+      
+      <!-- Main Title -->
       <h1 class="hero-title">
-        Frontend Developer
-        <span class="highlight">Angular Spezialist</span>
+        <span class="hero-name">Frontend Developer</span>
+        <span class="hero-role text-gradient">Angular Spezialist</span>
       </h1>
-      <p class="hero-subtitle">
-        Moderne Webanwendungen für die digitale Transformation von Kommunen und Unternehmen
+      
+      <!-- Subtitle -->
+      <p class="hero-subtitle text-secondary">
+        Ich entwickle <strong>moderne Webanwendungen</strong> für die digitale Transformation 
+        von Kommunen und Unternehmen mit Fokus auf <strong>Angular</strong> und <strong>TypeScript</strong>.
       </p>
+      
+      <!-- CTA Buttons -->
       <div class="hero-actions">
-        <a routerLink="/projects" class="btn-primary">Projekte ansehen</a>
-        <a routerLink="/contact" class="btn-secondary">Kontakt aufnehmen</a>
+        <a routerLink="/projects" class="btn-primary">
+          <mat-icon>work</mat-icon>
+          Projekte ansehen
+        </a>
+        <a routerLink="/contact" class="btn-secondary">
+          <mat-icon>email</mat-icon>
+          Kontakt aufnehmen
+        </a>
+      </div>
+      
+      <!-- Quick Stats -->
+      <div class="hero-stats">
+        <div class="stat" *ngFor="let stat of quickStats">
+          <span class="stat-number text-gradient">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
       </div>
     </div>
     
-    <div class="hero-visual">
-      <div class="tech-stack">
-        <div class="tech-item" *ngFor="let tech of technologies">
-          <mat-icon>{{ tech.icon }}</mat-icon>
-          <span>{{ tech.name }}</span>
+    <!-- Code Preview Visual -->
+    <div class="hero-visual animate-fadeInUp">
+      <div class="code-window glass">
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="control close"></span>
+            <span class="control minimize"></span>
+            <span class="control maximize"></span>
+          </div>
+          <div class="window-title font-mono">portfolio.component.ts</div>
+        </div>
+        <div class="code-content">
+          <pre class="font-mono"><code><span class="code-import">import</span> <span class="code-bracket">&#123;</span> <span class="code-class">Component</span> <span class="code-bracket">&#125;</span> <span class="code-import">from</span> <span class="code-string">'@angular/core'</span><span class="code-semicolon">;</span>
+
+<span class="code-decorator">@Component</span><span class="code-bracket">(&#123;</span>
+  <span class="code-property">selector</span><span class="code-colon">:</span> <span class="code-string">'app-portfolio'</span><span class="code-comma">,</span>
+  <span class="code-property">template</span><span class="code-colon">:</span> <span class="code-template">`
+    <span class="code-tag">&lt;h1&gt;</span>Moderne Webentwicklung<span class="code-tag">&lt;/h1&gt;</span>
+    <span class="code-tag">&lt;p&gt;</span>&#123;&#123; skills.angular &#125;&#125;<span class="code-tag">&lt;/p&gt;</span>
+  `</span>
+<span class="code-bracket">&#125;)</span>
+<span class="code-export">export class</span> <span class="code-class">PortfolioComponent</span> <span class="code-bracket">&#123;</span>
+  <span class="code-property">skills</span> <span class="code-operator">=</span> <span class="code-bracket">&#123;</span>
+    <span class="code-property">angular</span><span class="code-colon">:</span> <span class="code-string">'Experte'</span><span class="code-comma">,</span>
+    <span class="code-property">typescript</span><span class="code-colon">:</span> <span class="code-string">'Advanced'</span>
+  <span class="code-bracket">&#125;;</span>
+<span class="code-bracket">&#125;</span></code></pre>
+        </div>
+      </div>
+      
+      <!-- Floating Tech Icons -->
+      <div class="floating-tech">
+        <div class="tech-bubble" *ngFor="let tech of technologies; let i = index" 
+             [style.animation-delay]="i * 0.2 + 's'">
+          <mat-icon [class]="'tech-' + tech.name.toLowerCase()">{{ tech.icon }}</mat-icon>
+          <span class="tech-name">{{ tech.name }}</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="features">
+<section class="features section">
   <div class="container">
-    <h2>Fähigkeiten für moderne Verwaltungssoftware</h2>
+    <h2>
+      Expertise für <span class="text-gradient">moderne</span> Verwaltungssoftware
+    </h2>
     <div class="features-grid">
-      <div class="feature-card" *ngFor="let feature of features">
+      <div class="feature-card card" *ngFor="let feature of features; let i = index" 
+           [style.animation-delay]="(i * 0.1) + 's'">
         <div class="feature-icon">
           <mat-icon>{{ feature.icon }}</mat-icon>
         </div>
@@ -40,11 +110,12 @@
   </div>
 </section>
 
-<section class="stats">
+<section class="stats section-sm">
   <div class="container">
     <div class="stats-grid">
-      <div class="stat-item" *ngFor="let stat of stats">
-        <div class="stat-number">{{ stat.value }}</div>
+      <div class="stat-item" *ngFor="let stat of stats; let i = index" 
+           [style.animation-delay]="(i * 0.2) + 's'">
+        <div class="stat-number animate-fadeInUp">{{ stat.value }}</div>
         <div class="stat-label">{{ stat.label }}</div>
       </div>
     </div>

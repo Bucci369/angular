@@ -1,0 +1,61 @@
+<!-- WIEDERVERWENDBARE KOMPONENTE - Zeigt Angular Component Architektur -->
+<div class="skill-card" 
+     [class.detailed]="showDetails"
+     [style.animation-delay]="animationDelay + 'ms'"
+     [style.border-left-color]="categoryColor"
+     (click)="onSkillClick()">
+  
+  <!-- Skill Header -->
+  <div class="skill-header">
+    <div class="skill-icon">
+      <mat-icon [style.color]="categoryColor">{{ skill.icon }}</mat-icon>
+    </div>
+    <div class="skill-info">
+      <h3 class="skill-name">{{ skill.name }}</h3>
+      <span class="skill-category">{{ skill.category | titlecase }}</span>
+    </div>
+    <div class="skill-level-badge">{{ skillLevelText }}</div>
+  </div>
+  
+  <!-- Skill Level Progress Bar - BIDIREKTIONALE DATENBINDUNG! -->
+  <div class="skill-progress">
+    <div class="progress-bar">
+      <div class="progress-fill" 
+           [style.width]="skill.level + '%'"
+           [style.background-color]="categoryColor">
+      </div>
+    </div>
+    <span class="level-percentage">{{ skill.level }}%</span>
+  </div>
+  
+  <!-- Skill Description -->
+  <p class="skill-description">{{ skill.description }}</p>
+  
+  <!-- Experience Badge -->
+  <div class="experience-badge">
+    <mat-icon>schedule</mat-icon>
+    <span>{{ skill.yearsOfExperience }} Jahre Erfahrung</span>
+  </div>
+  
+  <!-- Detailed View - CONDITIONAL RENDERING -->
+  <div class="skill-details" *ngIf="showDetails">
+    <h4>Projekte mit {{ skill.name }}:</h4>
+    <ul class="project-list" *ngIf="skill.projects?.length; else noProjects">
+      <li *ngFor="let project of skill.projects">{{ project }}</li>
+    </ul>
+    <ng-template #noProjects>
+      <p class="no-projects">Keine öffentlichen Projekte verfügbar</p>
+    </ng-template>
+    
+    <!-- Interactive Level Slider -->
+    <div class="level-slider">
+      <label>Skill Level anpassen:</label>
+      <input type="range" 
+             min="0" 
+             max="100" 
+             [value]="skill.level"
+             (input)="onLevelChange(+$event.target.value)"
+             class="slider">
+    </div>
+  </div>
+</div>

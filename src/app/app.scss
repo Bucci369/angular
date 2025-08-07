@@ -3,21 +3,27 @@
   flex-direction: column;
   min-height: 100vh;
   background: var(--bg-primary);
+  padding-top: 80px; // Fixed header compensation
 }
 
 .main-content {
   flex: 1;
   position: relative;
+  padding: 0;
 }
 
-// Container System
+// Container System - RICHTIGE RÄNDER!
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: var(--space-lg) var(--space-lg); // Padding oben/unten UND links/rechts
   
   @media (max-width: 768px) {
-    padding: 0 var(--space-sm);
+    padding: var(--space-md) var(--space-md);
+  }
+  
+  @media (max-width: 480px) {
+    padding: var(--space-sm) var(--space-sm);
   }
 }
 
@@ -66,6 +72,9 @@
   @extend .btn;
   background: var(--gradient-primary);
   color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 16px 32px; // Größer für bessere Klickbarkeit
   box-shadow: var(--shadow-md);
   
   &:hover {
@@ -80,13 +89,16 @@
 
 .btn-secondary {
   @extend .btn;
-  background: transparent;
+  background: var(--bg-glass);
   color: var(--text-primary);
-  border: 2px solid var(--border);
+  border: 2px solid var(--primary);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 16px 32px;
   
   &:hover {
-    background: var(--bg-glass);
-    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
     box-shadow: var(--shadow-md);
   }
 }

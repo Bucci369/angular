@@ -1,17 +1,20 @@
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  left: 0;
+  right: 0;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
-    height: 70px;
+    padding: 0 var(--space-md);
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,41 +23,50 @@
   .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--mat-sys-primary);
+    color: var(--text-primary);
     text-decoration: none;
+    position: relative;
     
-    &:hover {
-      opacity: 0.8;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      transition: width 0.3s ease;
+    }
+    
+    &:hover::after {
+      width: 100%;
     }
   }
 
   .nav {
     display: flex;
-    gap: 2rem;
+    gap: var(--space-xl);
 
     a {
       text-decoration: none;
-      color: var(--mat-sys-on-surface);
+      color: var(--text-primary); // LESBAR MACHEN!
       font-weight: 500;
       position: relative;
-      transition: color 0.3s ease;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all 0.3s ease;
+      font-size: 1rem; // Größer für bessere Lesbarkeit
       
       &:hover {
-        color: var(--mat-sys-primary);
+        color: var(--primary);
+        background: rgba(99, 102, 241, 0.1);
+        transform: translateY(-2px);
       }
       
       &.active {
-        color: var(--mat-sys-primary);
-        
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -8px;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background: var(--mat-sys-primary);
-        }
+        color: var(--primary);
+        background: rgba(99, 102, 241, 0.15);
+        font-weight: 600;
       }
     }
   }
@@ -64,16 +76,17 @@
     flex-direction: column;
     background: none;
     border: none;
-    padding: 0.5rem;
+    padding: var(--space-sm);
     cursor: pointer;
     gap: 4px;
     
     span {
-      width: 20px;
+      width: 22px;
       height: 2px;
-      background: var(--mat-sys-on-surface);
-      transition: all 0.3s ease;
+      background: var(--text-primary);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       transform-origin: center;
+      border-radius: 1px;
     }
     
     &.active {
@@ -83,6 +96,7 @@
       
       span:nth-child(2) {
         opacity: 0;
+        transform: scaleX(0);
       }
       
       span:nth-child(3) {
@@ -97,26 +111,44 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
     flex-direction: column;
-    padding: 1rem 1.5rem;
-    gap: 1rem;
+    padding: var(--space-lg) var(--space-md);
+    gap: var(--space-md);
     
     &.active {
       display: flex;
+      animation: slideDown 0.3s ease;
     }
     
     a {
       text-decoration: none;
-      color: var(--mat-sys-on-surface);
+      color: var(--text-secondary);
       font-weight: 500;
-      padding: 0.5rem 0;
-      transition: color 0.3s ease;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+      position: relative;
       
       &:hover, &.active {
-        color: var(--mat-sys-primary);
+        color: var(--text-primary);
+        background: var(--bg-glass);
+        transform: translateX(var(--space-xs));
+      }
+      
+      &.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 3px;
+        height: 20px;
+        background: var(--primary);
+        border-radius: 0 2px 2px 0;
+        transform: translateY(-50%);
       }
     }
   }
@@ -129,5 +161,17 @@
     .mobile-toggle {
       display: flex;
     }
+  }
+}
+
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

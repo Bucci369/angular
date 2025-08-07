@@ -10,42 +10,61 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.scss'
 })
 export class HomeComponent {
+  // Skills for code preview
+  skills = {
+    angular: 'Experte',
+    typescript: 'Advanced'
+  };
+
+  // Quick stats for hero section
+  quickStats = [
+    { value: '3+', label: 'Jahre Angular' },
+    { value: '15+', label: 'Projekte' },
+    { value: '100%', label: 'TypeScript' }
+  ];
+
+  // Floating background elements
+  floatingElements = Array(6).fill(null);
+
+  // Tech stack with modern icons
   technologies = [
     { name: 'Angular', icon: 'code' },
     { name: 'TypeScript', icon: 'javascript' },
     { name: 'SCSS', icon: 'palette' },
-    { name: 'REST APIs', icon: 'api' },
     { name: 'RxJS', icon: 'stream' },
-    { name: 'Angular Material', icon: 'design_services' }
+    { name: 'Material', icon: 'design_services' },
+    { name: 'REST API', icon: 'api' }
   ];
 
+  // Features with modern descriptions
   features = [
     {
       icon: 'dashboard',
-      title: 'Intuitive Benutzeroberflächen',
-      description: 'Entwicklung benutzerfreundlicher Dashboards und Oberflächen für Verwaltungsanwendungen mit Angular Material Design System.'
+      title: 'Moderne UI/UX Design',
+      description: 'Entwicklung intuitiver und benutzerfreundlicher Interfaces für Verwaltungsanwendungen mit modernen Design-Patterns und Angular Material.'
     },
     {
-      icon: 'api',
-      title: 'REST API Integration',
-      description: 'Professionelle Integration von Backend-Services und APIs für Datenmanagement und Kommunalverwaltung.'
+      icon: 'integration_instructions',
+      title: 'API Integration & State Management',
+      description: 'Professionelle Integration von REST APIs mit RxJS Observables und effizientem State Management für komplexe Anwendungen.'
     },
     {
-      icon: 'responsive_layout',
-      title: 'Responsive Design',
-      description: 'Mobile-first Entwicklung für optimale Nutzererfahrung auf allen Geräten - von Desktop bis Smartphone.'
+      icon: 'devices',
+      title: 'Responsive & Performance',
+      description: 'Mobile-first Development mit optimaler Performance durch Lazy Loading, OnPush Change Detection und moderne Optimierungstechniken.'
     },
     {
-      icon: 'speed',
-      title: 'Performance Optimierung',
-      description: 'Lazy Loading, OnPush Change Detection und weitere Optimierungstechniken für schnelle Ladezeiten.'
+      icon: 'rocket_launch',
+      title: 'Modern Angular Features',
+      description: 'Verwendung neuester Angular Features wie Standalone Components, Signals und moderne Development-Patterns für zukunftssichere Lösungen.'
     }
   ];
 
+  // Enhanced stats for stats section
   stats = [
     { value: '3+', label: 'Jahre Angular' },
     { value: '15+', label: 'Projekte' },
     { value: '100%', label: 'TypeScript' },
-    { value: '5+', label: 'UI Libraries' }
+    { value: '10+', label: 'Technologien' }
   ];
 }
