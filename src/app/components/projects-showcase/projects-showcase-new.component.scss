@@ -1,0 +1,379 @@
+// PROJECTS SHOWCASE - José Style Professional Component
+// Professional styling inspired by José's portfolio
+
+// VARIABLES (same as in projects.scss for consistency)
+$Green: #64ffda;
+$LightNavy: #112240;
+$LightestSlate: #ccd6f6;
+$LightSlate: #a8b2d1;
+$Slate: #8892b0;
+$Navy: #0a192f;
+$CodeFont: 'SF Mono', 'Roboto Mono', Menlo, monospace;
+
+.projects-showcase {
+  padding: 6rem 0;
+  background: $Navy;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+}
+
+// SECTION STYLING - José Style
+.section-header {
+  margin-bottom: 3rem;
+  text-align: center;
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: $LightestSlate;
+    margin-bottom: 1rem;
+    
+    &::before {
+      content: '03.';
+      font-family: $CodeFont;
+      font-size: 1.2rem;
+      color: $Green;
+      margin-right: 1rem;
+    }
+  }
+  
+  .section-subtitle {
+    font-size: 1.2rem;
+    color: $LightSlate;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+// HIGHLIGHTED PROJECTS - José Style
+.highlighted-projects {
+  margin-bottom: 6rem;
+  
+  .project-item {
+    display: flex;
+    margin-bottom: 6rem;
+    align-items: center;
+    gap: 3rem;
+    
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+      
+      .project-content {
+        text-align: right;
+        
+        .project-links {
+          justify-content: flex-end;
+        }
+        
+        .project-tech {
+          justify-content: flex-end;
+        }
+      }
+    }
+    
+    .project-image {
+      flex: 1;
+      position: relative;
+      
+      img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        filter: grayscale(100%) contrast(1) brightness(90%);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        
+        &:hover {
+          filter: none;
+        }
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba($Green, 0.3);
+        mix-blend-mode: multiply;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+      
+      &:hover::after {
+        background: transparent;
+      }
+    }
+    
+    .project-content {
+      flex: 1;
+      position: relative;
+      
+      .project-overline {
+        margin: 10px 0;
+        color: $Green;
+        font-family: $CodeFont;
+        font-size: 13px;
+        font-weight: 400;
+      }
+      
+      .project-title {
+        color: $LightestSlate;
+        font-size: 28px;
+        margin: 0 0 20px;
+        
+        a {
+          color: inherit;
+          text-decoration: none;
+          
+          &:hover {
+            color: $Green;
+          }
+        }
+      }
+      
+      .project-description {
+        box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+        transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+        position: relative;
+        z-index: 2;
+        padding: 25px;
+        border-radius: 4px;
+        background-color: $LightNavy;
+        color: $LightSlate;
+        font-size: 18px;
+        
+        .highlight {
+          color: $Green;
+          font-weight: 600;
+        }
+      }
+      
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 2;
+        margin: 25px 0 10px;
+        padding: 0;
+        list-style: none;
+        
+        li {
+          margin: 0 20px 5px 0;
+          color: $LightSlate;
+          font-family: $CodeFont;
+          font-size: 13px;
+          white-space: nowrap;
+        }
+      }
+      
+      .project-links {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-top: 10px;
+        margin-left: -10px;
+        color: $LightSlate;
+        
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          color: inherit;
+          text-decoration: none;
+          
+          &:hover {
+            color: $Green;
+          }
+          
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// OTHER PROJECTS - José Style
+.other-projects {
+  h3 {
+    font-size: 32px;
+    color: $LightestSlate;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    
+    .project-card {
+      background: $LightNavy;
+      border-radius: 4px;
+      padding: 2rem 1.75rem;
+      position: relative;
+      height: 100%;
+      transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+      
+      &:hover {
+        transform: translateY(-7px);
+      }
+      
+      .project-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        
+        .folder-icon {
+          color: $Green;
+          
+          svg {
+            width: 40px;
+            height: 40px;
+          }
+        }
+        
+        .project-links {
+          display: flex;
+          gap: 0.5rem;
+          
+          a {
+            color: $LightSlate;
+            text-decoration: none;
+            
+            &:hover {
+              color: $Green;
+            }
+            
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+      
+      .project-title {
+        margin: 0 0 10px;
+        color: $LightestSlate;
+        font-size: 22px;
+        
+        a {
+          color: inherit;
+          text-decoration: none;
+          
+          &:hover {
+            color: $Green;
+          }
+        }
+      }
+      
+      .project-description {
+        color: $LightSlate;
+        font-size: 17px;
+        line-height: 1.3;
+      }
+      
+      .project-tech {
+        display: flex;
+        align-items: flex-end;
+        flex-grow: 1;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 20px 0 0;
+        list-style: none;
+        
+        li {
+          font-family: $CodeFont;
+          font-size: 12px;
+          line-height: 1.75;
+          color: $LightSlate;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// RESPONSIVE DESIGN
+@media (max-width: 768px) {
+  .projects-showcase {
+    padding: 4rem 0;
+    
+    .container {
+      padding: 0 1rem;
+    }
+  }
+  
+  .section-header {
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+  
+  .highlighted-projects {
+    .project-item {
+      flex-direction: column !important;
+      gap: 2rem;
+      
+      .project-content {
+        text-align: center !important;
+        
+        .project-links,
+        .project-tech {
+          justify-content: center !important;
+        }
+        
+        .project-description {
+          padding: 20px;
+          font-size: 16px;
+        }
+      }
+      
+      .project-image {
+        img {
+          height: 250px;
+        }
+      }
+    }
+  }
+  
+  .other-projects {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    .section-title {
+      font-size: 1.75rem;
+    }
+  }
+  
+  .highlighted-projects {
+    .project-item {
+      .project-content {
+        .project-title {
+          font-size: 24px;
+        }
+        
+        .project-description {
+          padding: 15px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

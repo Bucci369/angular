@@ -1,38 +1,53 @@
-@use '../../../styles/variables' as *;
+// PROJECTS SHOWCASE - José Style Professional Component
+// Professional styling inspired by José's portfolio
+
+// VARIABLES (same as in projects.scss for consistency)
+$Green: #64ffda;
+$LightNavy: #112240;
+$LightestSlate: #ccd6f6;
+$LightSlate: #a8b2d1;
+$Slate: #8892b0;
+$Navy: #0a192f;
+$CodeFont: 'SF Mono', 'Roboto Mono', Menlo, monospace;
 
 .projects-showcase {
-  padding: var(--space-xl) 0;
+  padding: 6rem 0;
+  background: $Navy;
   
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 2rem;
   }
 }
 
-// SECTION STYLING
+// SECTION STYLING - José Style
 .section-header {
-  margin-bottom: var(--space-xl);
+  margin-bottom: 3rem;
   text-align: center;
   
   .section-title {
     font-size: 2.5rem;
-    color: var(--text-primary);
-    margin-bottom: var(--space-md);
+    color: $LightestSlate;
+    margin-bottom: 1rem;
     
-    .n-section-title {
-      color: var(--primary);
-      font-family: var(--font-mono);
-      font-size: 1.5rem;
-      margin-right: var(--space-sm);
+    &::before {
+      content: '03.';
+      font-family: $CodeFont;
+      font-size: 1.2rem;
+      color: $Green;
+      margin-right: 1rem;
     }
   }
   
   .section-subtitle {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color: $LightSlate;
+    max-width: 800px;
+    margin: 0 auto;
   }
 }
+
 
 // FEATURED PROJECTS (José's Style)
 .featured-projects-section {
