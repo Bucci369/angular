@@ -1,13 +1,34 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Skill } from './skill-card/skill-card';
 
-// ANGULAR SERVICE - Demonstriert Dependency Injection & State Management
+// ANGULAR SERVICE - Modernste Signals + Backward Compatibility
 @Injectable({
   providedIn: 'root' // SINGLETON PATTERN - Überall wiederverwendbar!
 })
 export class SkillsService {
-  // RXJS BEHAVIORAL SUBJECT - Reactive State Management
+  // ANGULAR SIGNALS (2024/2025) - Modernste Reactive State Management
+  private skillsSignal = signal<Skill[]>(this.getInitialSkills());
+  public skills = this.skillsSignal.asReadonly();
+  
+  // COMPUTED SIGNALS - Automatische Updates bei Änderungen
+  public frontendSkills = computed(() => 
+    this.skills().filter(skill => skill.category === 'frontend')
+  );
+  
+  public backendSkills = computed(() => 
+    this.skills().filter(skill => skill.category === 'backend')
+  );
+  
+  public toolsSkills = computed(() => 
+    this.skills().filter(skill => skill.category === 'tools')
+  );
+  
+  public softSkills = computed(() => 
+    this.skills().filter(skill => skill.category === 'soft-skills')
+  );
+  
+  // LEGACY SUPPORT - RxJS für Backward Compatibility
   private skillsSubject = new BehaviorSubject<Skill[]>(this.getInitialSkills());
   public skills$ = this.skillsSubject.asObservable();
   
@@ -28,28 +49,74 @@ export class SkillsService {
     console.log('SkillsService initialisiert - Dependency Injection funktioniert!');
   }
   
-  // PUBLIC API METHODS
-  getAllSkills(): Observable<Skill[]> {
-    return this.skills$;
-  }
-  
-  getSkillsByCategory(category: Skill['category']): Observable<Skill[]> {
-    return this.skills$.pipe(
-      map(skills => skills.filter(skill => skill.category === category))
+  // MODERNE SIGNALS API (2024/2025)
+  getSkillsByCategory(category: Skill['category']) {
+    return computed(() => 
+      this.skills().filter(skill => skill.category === category)
     );
   }
   
+  getSkillCount(category: Skill['category']) {
+    return computed(() => 
+      this.skills().filter(skill => skill.category === category).length
+    );
+  }
+  
+  getTotalSkillsCount() {
+    return computed(() => this.skills().length);
+  }
+  
+  getAverageSkillLevel() {
+    return computed(() => {
+      const allSkills = this.skills();
+      return allSkills.length > 0 
+        ? Math.round(allSkills.reduce((sum, skill) => sum + skill.level, 0) / allSkills.length)
+        : 0;
+    });
+  }
+  
+  getExpertSkillsCount() {
+    return computed(() => 
+      this.skills().filter(skill => skill.level >= 90).length
+    );
+  }
+  
+  getTotalExperience() {
+    return computed(() => 
+      this.skills().reduce((sum, skill) => sum + skill.yearsOfExperience, 0)
+    );
+  }
+  
+  // SIGNALS UPDATE METHODS
   updateSkillLevel(skillName: string, newLevel: number): void {
-    const currentSkills = this.skillsSubject.value;
+    const currentSkills = this.skillsSignal();
     const updatedSkills = currentSkills.map(skill => 
       skill.name === skillName ? { ...skill, level: newLevel } : skill
     );
+    this.skillsSignal.set(updatedSkills);
+    
+    // Legacy Support - auch RxJS aktualisieren
     this.skillsSubject.next(updatedSkills);
   }
   
   addSkill(newSkill: Skill): void {
-    const currentSkills = this.skillsSubject.value;
-    this.skillsSubject.next([...currentSkills, newSkill]);
+    const currentSkills = this.skillsSignal();
+    const updatedSkills = [...currentSkills, newSkill];
+    this.skillsSignal.set(updatedSkills);
+    
+    // Legacy Support
+    this.skillsSubject.next(updatedSkills);
+  }
+  
+  // LEGACY RxJS API (für Backward Compatibility)
+  getAllSkills(): Observable<Skill[]> {
+    return this.skills$;
+  }
+  
+  getSkillsByCategoryObservable(category: Skill['category']): Observable<Skill[]> {
+    return this.skills$.pipe(
+      map(skills => skills.filter(skill => skill.category === category))
+    );
   }
   
   // PRIVATE METHODS

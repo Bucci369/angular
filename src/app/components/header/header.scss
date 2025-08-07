@@ -11,10 +11,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-md);
-    height: 80px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;

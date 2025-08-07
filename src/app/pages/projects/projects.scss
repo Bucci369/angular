@@ -1,0 +1,586 @@
+// KOMMUNALVERWALTUNG DASHBOARD - Professional Styling f�r Axians IKVS
+// Remove @use statement - use global styles
+
+// PROJECTS HERO SECTION
+.projects-hero {
+  background: var(--gradient-hero);
+  text-align: center;
+  
+  .projects-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+  }
+  
+  .projects-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+  }
+  
+  // Stadt-Auswahl Buttons
+  .city-selector {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    
+    .city-button {
+      background: var(--gradient-card);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: var(--space-lg) var(--space-xl);
+      border-radius: var(--radius-lg);
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      backdrop-filter: blur(20px);
+      min-width: 180px;
+      
+      &:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary);
+        box-shadow: var(--shadow-lg);
+        background: var(--gradient-primary);
+        color: white;
+        
+        .population {
+          color: rgba(255, 255, 255, 0.9);
+        }
+      }
+      
+      &.active {
+        background: var(--gradient-primary);
+        border-color: var(--primary);
+        color: white;
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        
+        .population {
+          color: rgba(255, 255, 255, 0.9);
+        }
+      }
+      
+      .population {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// KPI OVERVIEW SECTION
+.kpi-overview {
+  background: var(--bg-secondary);
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .comparison-toggle {
+      background: var(--bg-glass);
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius-lg);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        border-color: var(--primary);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+      }
+      
+      &.active {
+        background: var(--gradient-primary);
+        border-color: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+    }
+  }
+  
+  // KPI Cards Grid
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    
+    .kpi-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-primary);
+      }
+      
+      &:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-xl);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+      
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-md);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .kpi-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--space-sm);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        &.positive {
+          color: var(--accent);
+        }
+        
+        &.negative {
+          color: #EF4444;
+        }
+        
+        &.score {
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          
+          .unit {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+          }
+        }
+      }
+      
+      .kpi-meta {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      
+      // Spezifische Farben
+      &.budget::before { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+      &.balance::before { background: linear-gradient(135deg, #10B981, #059669); }
+      &.performance::before { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+      &.population::before { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    }
+  }
+}
+
+// DEPARTMENTS SECTION
+.departments-section {
+  background: var(--bg-primary);
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .departments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-lg);
+    
+    .department-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(20px);
+      
+      &:hover {
+        transform: translateY(-4px) translateX(4px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--primary);
+      }
+      
+      &.selected {
+        border-color: var(--primary);
+        box-shadow: var(--shadow-lg);
+        background: var(--gradient-primary);
+        color: white;
+        transform: translateY(-4px) translateX(4px);
+        
+        .dept-header h3,
+        .efficiency-value,
+        .metric-value {
+          color: white;
+        }
+        
+        .efficiency-label,
+        .metric-label {
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+      
+      .dept-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: var(--space-lg);
+        
+        h3 {
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: var(--text-primary);
+          margin: 0;
+          flex: 1;
+        }
+        
+        .dept-efficiency {
+          text-align: right;
+          
+          .efficiency-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+          }
+          
+          .efficiency-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+      
+      .dept-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+        
+        .metric {
+          text-align: center;
+          
+          .metric-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          
+          .metric-value {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+          }
+        }
+      }
+      
+      .dept-progress {
+        .progress-bar {
+          width: 100%;
+          height: 8px;
+          background: var(--bg-tertiary);
+          border-radius: var(--radius-sm);
+          overflow: hidden;
+          
+          .progress-fill {
+            height: 100%;
+            border-radius: var(--radius-sm);
+            transition: all 0.6s ease;
+            background: var(--gradient-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+// TECHNOLOGY SHOWCASE
+.tech-showcase {
+  background: var(--bg-secondary);
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    
+    .tech-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+      
+      h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: var(--space-md);
+      }
+      
+      p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: var(--space-md);
+      }
+      
+      .code-preview {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: var(--space-md);
+        
+        code {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.8rem;
+          color: var(--accent);
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+  
+  .demo-controls {
+    background: var(--gradient-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    backdrop-filter: blur(20px);
+    
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+    }
+    
+    p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+      font-size: 1.1rem;
+      
+      strong {
+        color: var(--primary);
+        font-weight: 600;
+      }
+    }
+    
+    .control-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      
+      .demo-button {
+        background: var(--bg-glass);
+        border: 2px solid var(--border);
+        color: var(--text-secondary);
+        padding: var(--space-md) var(--space-lg);
+        border-radius: var(--radius-lg);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        
+        &:hover {
+          transform: translateY(-2px);
+          border-color: var(--primary);
+          color: var(--text-primary);
+          box-shadow: var(--shadow-md);
+        }
+        
+        &.active {
+          background: var(--gradient-primary);
+          border-color: var(--primary);
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-md);
+        }
+      }
+    }
+  }
+}
+
+// RESPONSIVE DESIGN
+@media (max-width: 768px) {
+  .projects-hero {
+    .projects-title {
+      font-size: 2.5rem;
+    }
+    
+    .city-selector {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      
+      .city-button {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  }
+  
+  .kpi-overview {
+    .section-header {
+      flex-direction: column;
+      gap: var(--space-md);
+      text-align: center;
+      
+      h2 {
+        font-size: 2rem;
+      }
+    }
+    
+    .kpi-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-md);
+    }
+  }
+  
+  .departments-section {
+    h2 {
+      font-size: 2rem;
+    }
+    
+    .departments-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      
+      .department-card {
+        .dept-metrics {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+  }
+  
+  .tech-showcase {
+    h2 {
+      font-size: 2rem;
+    }
+    
+    .tech-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    
+    .demo-controls {
+      .control-buttons {
+        flex-direction: column;
+        align-items: center;
+        
+        .demo-button {
+          width: 100%;
+          max-width: 280px;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-hero {
+    .projects-title {
+      font-size: 2rem;
+    }
+    
+    .projects-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+  
+  .kpi-overview {
+    .kpi-grid {
+      grid-template-columns: 1fr;
+      
+      .kpi-card {
+        .kpi-value {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+  
+  .departments-section {
+    .departments-grid {
+      .department-card {
+        padding: var(--space-lg);
+        
+        .dept-metrics {
+          grid-template-columns: 1fr;
+          gap: var(--space-sm);
+        }
+      }
+    }
+  }
+}

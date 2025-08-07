@@ -1,0 +1,250 @@
+// ENHANCED ANIMATIONS - Inspired by andresjosehr portfolio
+// Modern scroll-triggered animations with better performance
+
+// Base animation setup
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  &.animate-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Staggered animations for lists
+.stagger-container .stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Typewriter effect (andresjosehr inspired)
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--primary);
+  animation: typing 3.5s steps(40, end), blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-cursor {
+  from, to { border-color: var(--primary); }
+  50% { border-color: transparent; }
+}
+
+// Glitch effect for dramatic titles
+.glitch-effect {
+  position: relative;
+  
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &::before {
+    color: #ff00ff;
+    z-index: -1;
+    transform: translate(-2px, -1px);
+  }
+
+  &::after {
+    color: #00ffff;
+    z-index: -2;
+    transform: translate(2px, 1px);
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      opacity: 0.8;
+      animation: glitch 0.5s ease-in-out;
+    }
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+// Parallax elements
+.parallax-element {
+  will-change: transform;
+}
+
+// Enhanced shimmer effect for buttons
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  &:hover {
+    background-position: 100% 50%;
+    animation: shimmer 2s infinite;
+    
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// Magnetic effect for interactive elements
+.magnetic-effect {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+// Floating animation with random delays
+.floating {
+  animation: floating 6s ease-in-out infinite;
+  
+  &:nth-child(2n) {
+    animation-delay: -2s;
+    animation-duration: 8s;
+  }
+  
+  &:nth-child(3n) {
+    animation-delay: -4s;
+    animation-duration: 7s;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+// Text reveal animation
+.text-reveal {
+  overflow: hidden;
+  
+  .text-reveal-inner {
+    display: inline-block;
+    transform: translateY(100%);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  &.animate-in .text-reveal-inner {
+    transform: translateY(0%);
+  }
+}
+
+// Morphing background (inspired by RealWorld gradients)
+.morphing-bg {
+  background: linear-gradient(-45deg, var(--primary), var(--secondary), var(--accent), var(--primary-dark));
+  background-size: 400% 400%;
+  animation: morphing 15s ease infinite;
+}
+
+@keyframes morphing {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// Loading skeleton effect
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// Responsive animations - reduce motion for accessibility
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

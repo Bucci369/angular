@@ -1,1 +1,185 @@
-<p>projects works!</p>
+<!-- KOMMUNALVERWALTUNG DASHBOARD - Perfekt für Axians IKVS Bewerbung -->
+<section class="projects-hero section">
+  <div class="container">
+    <h1 class="projects-title">
+      Live Demo: <span class="text-gradient">Kommunalverwaltung Dashboard</span>
+    </h1>
+    <p class="projects-subtitle">
+      <strong>NgRx SignalStore</strong> in Aktion - Interkommunaler Kennzahlenvergleich wie bei <strong>Axians IKVS</strong>
+    </p>
+    
+    <!-- Stadt-Auswahl -->
+    <div class="city-selector">
+      <button 
+        *ngFor="let city of store.cities()" 
+        class="city-button"
+        [class.active]="store.selectedCity() === city.cityName"
+        (click)="onCityChange(city.cityName)">
+        {{ city.cityName }}
+        <span class="population">{{ formatNumber(city.population) }} Einwohner</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- KPI OVERVIEW - Hauptkennzahlen -->
+<section class="kpi-overview section">
+  <div class="container">
+    <div class="section-header">
+      <h2>📈 Hauptkennzahlen - {{ store.currentCity().cityName }}</h2>
+      <button class="comparison-toggle" (click)="toggleComparison()" 
+              [class.active]="store.comparisonMode()">
+        {{ store.comparisonMode() ? 'Vergleich ausblenden' : 'Städtevergleich anzeigen' }}
+      </button>
+    </div>
+    
+    <!-- Finanz-KPIs -->
+    <div class="kpi-grid">
+      <div class="kpi-card budget">
+        <h3>Haushaltsvolumen</h3>
+        <div class="kpi-value">{{ (store.currentCity().budget | currency:'EUR':'symbol':'1.0-0':'de') }}</div>
+        <div class="kpi-meta">
+          Budget-Ausschöpfung: {{ store.budgetUtilization() }}%
+        </div>
+      </div>
+      
+      <div class="kpi-card balance">
+        <h3>Haushaltsaldo</h3>
+        <div class="kpi-value" [class.positive]="store.budgetBalance() > 0" [class.negative]="store.budgetBalance() < 0">
+          {{ (store.budgetBalance() | currency:'EUR':'symbol':'1.0-0':'de') }}
+        </div>
+        <div class="kpi-meta">
+          {{ store.budgetBalance() > 0 ? 'Überschuss' : 'Defizit' }}
+        </div>
+      </div>
+      
+      <div class="kpi-card performance">
+        <h3>Performance Score</h3>
+        <div class="kpi-value score">{{ store.performanceScore() }}<span class="unit">/100</span></div>
+        <div class="kpi-meta">
+          Durchschnittliche Effizienz: {{ store.averageDepartmentEfficiency() }}%
+        </div>
+      </div>
+      
+      <div class="kpi-card population">
+        <h3>Einwohner</h3>
+        <div class="kpi-value">{{ formatNumber(store.currentCity().population) }}</div>
+        <div class="kpi-meta">
+          Budget pro Kopf: {{ ((store.currentCity().budget / store.currentCity().population) | currency:'EUR':'symbol':'1.0-0':'de') }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS - Fachbereiche -->
+<section class="departments-section section">
+  <div class="container">
+    <h2>🏛️ Fachbereiche & Budgetverteilung</h2>
+    
+    <div class="departments-grid">
+      <div 
+        *ngFor="let dept of store.departmentsByCategory()"
+        class="department-card"
+        [class.selected]="store.selectedDepartment() === dept.id"
+        [style.border-left-color]="getDepartmentColor(dept.category)"
+        (click)="onDepartmentSelect(dept.id)">
+        
+        <div class="dept-header">
+          <h3>{{ dept.name }}</h3>
+          <div class="dept-efficiency">
+            <span class="efficiency-value">{{ dept.efficiency }}%</span>
+            <span class="efficiency-label">Effizienz</span>
+          </div>
+        </div>
+        
+        <div class="dept-metrics">
+          <div class="metric">
+            <span class="metric-label">Budget</span>
+            <span class="metric-value">{{ (dept.budget | currency:'EUR':'symbol':'1.0-0':'de') }}</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Mitarbeiter</span>
+            <span class="metric-value">{{ dept.employees }}</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">€ pro Mitarbeiter</span>
+            <span class="metric-value">{{ ((dept.budget / dept.employees) | currency:'EUR':'symbol':'1.0-0':'de') }}</span>
+          </div>
+        </div>
+        
+        <div class="dept-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="dept.efficiency" 
+                 [style.background-color]="getDepartmentColor(dept.category)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY SHOWCASE -->
+<section class="tech-showcase section">
+  <div class="container">
+    <h2>⚡ NgRx SignalStore Demo (Axians-Ready)</h2>
+    
+    <div class="tech-grid">
+      <div class="tech-card">
+        <h3>SignalStore State</h3>
+        <p>Modernste State Management 2024/2025</p>
+        <div class="code-preview">
+          <code>
+withState&lt;MunicipalData&gt;(&#123;<br>
+&nbsp;&nbsp;selectedCity: 'Münster',<br>
+&nbsp;&nbsp;comparisonMode: false<br>
+&#125;)
+          </code>
+        </div>
+      </div>
+      
+      <div class="tech-card">
+        <h3>Computed Signals</h3>
+        <p>Automatische KPI-Berechnungen</p>
+        <div class="code-preview">
+          <code>
+budgetBalance: computed(() =><br>
+&nbsp;&nbsp;city.income - city.expenses<br>
+)
+          </code>
+        </div>
+      </div>
+      
+      <div class="tech-card">
+        <h3>Business Logic</h3>
+        <p>Komplexe Verwaltungsstrukturen</p>
+        <div class="code-preview">
+          <code>
+performanceScore: computed(() =><br>
+&nbsp;&nbsp;(kpiScore + efficiency) / 2 * 100<br>
+)
+          </code>
+        </div>
+      </div>
+    </div>
+    
+    <div class="demo-controls">
+      <h3>🎮 Interaktive Demo</h3>
+      <p>Klicken Sie auf verschiedene Städte und Fachbereiche um das <strong>NgRx SignalStore</strong> live zu erleben!</p>
+      
+      <div class="control-buttons">
+        <button class="demo-button" (click)="toggleComparison()">
+          {{ store.comparisonMode() ? '📊 Vergleich ausblenden' : '🏆 Städtevergleich zeigen' }}
+        </button>
+        <button class="demo-button" (click)="onCityChange('Münster')" 
+                [class.active]="store.selectedCity() === 'Münster'">
+          🏛️ Münster Dashboard
+        </button>
+        <button class="demo-button" (click)="onCityChange('Osnabrück')"
+                [class.active]="store.selectedCity() === 'Osnabrück'">
+          🌟 Osnabrück Dashboard  
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -4,8 +4,9 @@
     <div class="bg-grid"></div>
     <div class="bg-gradient"></div>
     <div class="floating-elements">
-      <div class="floating-element" *ngFor="let el of floatingElements; let i = index" 
+      <div class="floating-element floating parallax-element" *ngFor="let el of floatingElements; let i = index" 
            [style.animation-delay]="i * 0.5 + 's'">
+        <div class="element-glow"></div>
       </div>
     </div>
   </div>
@@ -17,9 +18,9 @@
         <span class="font-mono text-gradient">Hi, ich bin</span>
       </div>
       
-      <!-- Main Title -->
+      <!-- Main Title with Typewriter Effect -->
       <h1 class="hero-title">
-        <span class="hero-name">Frontend Developer</span>
+        <span class="hero-name" #heroTitle>Frontend Developer</span>
         <span class="hero-role text-gradient">Angular Spezialist</span>
       </h1>
       
@@ -29,13 +30,13 @@
         von Kommunen und Unternehmen mit Fokus auf <strong>Angular</strong> und <strong>TypeScript</strong>.
       </p>
       
-      <!-- CTA Buttons -->
+      <!-- CTA Buttons with Enhanced Effects -->
       <div class="hero-actions">
-        <a routerLink="/projects" class="btn-primary">
+        <a routerLink="/projects" class="btn-primary shimmer-effect magnetic-effect">
           <mat-icon>work</mat-icon>
           Projekte ansehen
         </a>
-        <a routerLink="/contact" class="btn-secondary">
+        <a routerLink="/contact" class="btn-secondary magnetic-effect">
           <mat-icon>email</mat-icon>
           Kontakt aufnehmen
         </a>
@@ -97,13 +98,15 @@
     <h2>
       Expertise für <span class="text-gradient">moderne</span> Verwaltungssoftware
     </h2>
-    <div class="features-grid">
-      <div class="feature-card card" *ngFor="let feature of features; let i = index" 
+    <div class="features-grid stagger-container">
+      <div class="feature-card card stagger-item magnetic-effect" *ngFor="let feature of features; let i = index" 
            [style.animation-delay]="(i * 0.1) + 's'">
         <div class="feature-icon">
           <mat-icon>{{ feature.icon }}</mat-icon>
         </div>
-        <h3>{{ feature.title }}</h3>
+        <h3 class="text-reveal">
+          <span class="text-reveal-inner">{{ feature.title }}</span>
+        </h3>
         <p>{{ feature.description }}</p>
       </div>
     </div>

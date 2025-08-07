@@ -3,29 +3,18 @@
   flex-direction: column;
   min-height: 100vh;
   background: var(--bg-primary);
-  padding-top: 80px; // Fixed header compensation
+  padding-top: 70px; // Fixed header compensation
 }
 
 .main-content {
   flex: 1;
   position: relative;
-  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-// Container System - RICHTIGE RÄNDER!
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--space-lg) var(--space-lg); // Padding oben/unten UND links/rechts
-  
-  @media (max-width: 768px) {
-    padding: var(--space-md) var(--space-md);
-  }
-  
-  @media (max-width: 480px) {
-    padding: var(--space-sm) var(--space-sm);
-  }
-}
+// OVERWRITE GLOBAL CONTAINER - Use from styles.scss
+// This removes duplicate container definitions
 
 .container-fluid {
   width: 100%;
@@ -115,22 +104,8 @@
   }
 }
 
-// Section Spacing
-.section {
-  padding: var(--space-3xl) 0;
-  
-  @media (max-width: 768px) {
-    padding: var(--space-xl) 0;
-  }
-}
-
-.section-sm {
-  padding: var(--space-xl) 0;
-  
-  @media (max-width: 768px) {
-    padding: var(--space-lg) 0;
-  }
-}
+// OVERWRITE GLOBAL SECTION - Use from styles.scss
+// This removes duplicate section definitions
 
 // Grid System
 .grid {

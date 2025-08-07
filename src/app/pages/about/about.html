@@ -25,48 +25,49 @@
       </p>
     </div>
     
-    <!-- Category Tabs - Bidirektionale Datenbindung -->
+    <!-- Category Tabs - SIGNALS Bidirektionale Datenbindung (2024/2025) -->
     <div class="category-tabs">
       <button 
         *ngFor="let category of categories" 
         class="tab-button"
-        [class.active]="selectedCategory === category"
+        [class.active]="selectedCategory() === category"
         (click)="selectCategory(category)">
         {{ category | titlecase }}
-        <span class="skill-count">({{ getSkillCount(category) }})</span>
+        <span class="skill-count">({{ getSkillCount(category)() }})</span>
       </button>
     </div>
     
-    <!-- Skills Grid - Async Pipe & Observables -->
-    <div class="skills-grid">
+    <!-- Skills Grid - SIGNALS (2024/2025) statt Async Pipe -->
+    <div class="skills-grid stagger-container fade-in-up">
       <app-skill-card 
-        *ngFor="let skill of (getCurrentCategorySkills() | async); trackBy: trackBySkill; let i = index"
+        *ngFor="let skill of currentCategorySkills(); trackBy: trackBySkill; let i = index"
+        class="stagger-item magnetic-effect"
         [skill]="skill"
-        [showDetails]="selectedSkill === skill.name"
+        [showDetails]="selectedSkill() === skill.name"
         [animationDelay]="i * 100"
         (skillClicked)="onSkillClicked($event)"
         (levelUpdated)="onLevelUpdated($event)">
       </app-skill-card>
     </div>
     
-    <!-- Live Skill Statistics -->
-    <div class="skill-stats" *ngIf="skillStats">
-      <h3>📊 Live Statistiken (Updated via RxJS)</h3>
+    <!-- Live Skill Statistics - COMPUTED SIGNALS (Modernste Angular) -->
+    <div class="skill-stats">
+      <h3>📊 Live Statistiken (SIGNALS 2024/2025 Edition)</h3>
       <div class="stats-grid">
         <div class="stat-card">
-          <span class="stat-value">{{ skillStats.totalSkills }}</span>
+          <span class="stat-value">{{ skillStats().totalSkills }}</span>
           <span class="stat-label">Gesamte Skills</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">{{ skillStats.averageLevel }}%</span>
+          <span class="stat-value">{{ skillStats().averageLevel }}%</span>
           <span class="stat-label">Durchschnittslevel</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">{{ skillStats.expertSkills }}</span>
+          <span class="stat-value">{{ skillStats().expertSkills }}</span>
           <span class="stat-label">Expert-Level</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">{{ skillStats.totalExperience }}</span>
+          <span class="stat-value">{{ skillStats().totalExperience }}</span>
           <span class="stat-label">Jahre Erfahrung</span>
         </div>
       </div>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { ScrollAnimationsService } from '../../shared/services/animations/scroll-animations.service';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +10,29 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('heroTitle', { static: false }) heroTitle!: ElementRef;
+  @ViewChild('heroSubtitle', { static: false }) heroSubtitle!: ElementRef;
+  
+  private scrollAnimations = inject(ScrollAnimationsService);
+  private typewriterTimeouts: number[] = [];
+
   // Skills for code preview
   skills = {
     angular: 'Experte',
     typescript: 'Advanced'
   };
+
+  // Typewriter texts
+  titles = [
+    'Frontend Developer',
+    'Angular Spezialist', 
+    'TypeScript Experte',
+    'UI/UX Designer'
+  ];
+  
+  currentTitleIndex = 0;
+  isTyping = false;
 
   // Quick stats for hero section
   quickStats = [
@@ -67,4 +85,39 @@ export class HomeComponent {
     { value: '100%', label: 'TypeScript' },
     { value: '10+', label: 'Technologien' }
   ];
+
+  ngAfterViewInit(): void {
+    this.scrollAnimations.initializeScrollAnimations();
+    this.startTypewriter();
+  }
+
+  ngOnDestroy(): void {
+    this.typewriterTimeouts.forEach(timeout => clearTimeout(timeout));
+  }
+
+  private startTypewriter(): void {
+    if (this.isTyping) return;
+    
+    this.isTyping = true;
+    const currentTitle = this.titles[this.currentTitleIndex];
+    
+    // Type out current title
+    this.scrollAnimations.typeWriter(this.heroTitle, currentTitle, 80)
+      .then(() => {
+        // Wait 2 seconds
+        return new Promise(resolve => {
+          const timeout = setTimeout(resolve, 2000);
+          this.typewriterTimeouts.push(timeout);
+        });
+      })
+      .then(() => {
+        // Move to next title
+        this.currentTitleIndex = (this.currentTitleIndex + 1) % this.titles.length;
+        this.isTyping = false;
+        
+        // Continue loop
+        const timeout = setTimeout(() => this.startTypewriter(), 500);
+        this.typewriterTimeouts.push(timeout);
+      });
+  }
 }

@@ -1,7 +1,7 @@
 // Hero Section - Modern Dark Design
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -41,6 +41,18 @@
         border-radius: 50%;
         animation: float 6s ease-in-out infinite;
         
+        .element-glow {
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          width: 8px;
+          height: 8px;
+          background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+          border-radius: 50%;
+          opacity: 0.7;
+          animation: pulse 3s ease-in-out infinite;
+        }
+        
         &:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
         &:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; }
         &:nth-child(3) { top: 30%; right: 15%; animation-delay: 2s; }
@@ -54,13 +66,10 @@
   .container {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-3xl);
+    gap: var(--space-4xl);
     align-items: center;
     position: relative;
     z-index: 1;
-    padding: var(--space-xl) var(--space-lg); // ECHTE RÄNDER!
-    max-width: 1400px;
-    margin: 0 auto;
   }
   
   // Hero Content
