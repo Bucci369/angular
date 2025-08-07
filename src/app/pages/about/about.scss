@@ -341,6 +341,165 @@
   }
 }
 
+// PROFESSIONAL SKILLS SECTION (José's Portfolio Style)
+.professional-skills-section {
+  margin-top: var(--space-xl);
+  
+  .section-title {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    
+    .n-section-title {
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      margin-right: var(--space-sm);
+    }
+  }
+  
+  .intro-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 600px;
+    
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    strong {
+      color: var(--text-primary);
+    }
+  }
+  
+  .skills-grid-professional {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .skill-category {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    
+    h4 {
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      
+      .category-number {
+        color: var(--primary);
+        font-family: var(--font-mono);
+        font-size: 1rem;
+      }
+    }
+    
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      .skill-element {
+        position: relative;
+        margin-bottom: 12px;
+        padding-left: 20px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        
+        &:before {
+          content: '▹';
+          position: absolute;
+          left: 0;
+          color: var(--primary);
+          font-size: 14px;
+          line-height: 1.4;
+        }
+        
+        .underline {
+          position: relative;
+          transition: color 0.3s ease;
+          
+          &:hover {
+            color: var(--primary);
+          }
+          
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+          }
+          
+          &:hover:after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+  .experience-highlight {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--space-xl);
+    margin-top: var(--space-xl);
+    
+    h3 {
+      color: var(--text-primary);
+      margin-bottom: var(--space-lg);
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+    }
+    
+    .highlight-item {
+      text-align: center;
+      
+      h4 {
+        color: var(--primary);
+        margin-bottom: var(--space-sm);
+        font-size: 1.1rem;
+      }
+      
+      p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        
+        strong {
+          color: var(--text-primary);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
 // ANIMATIONS
 @keyframes fadeInUp {
   from {

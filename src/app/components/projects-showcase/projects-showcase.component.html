@@ -1,0 +1,132 @@
+<!-- PROJECTS SHOWCASE COMPONENT (José's Style) -->
+<section class="projects-showcase">
+  <div class="container">
+    
+    <!-- HIGHLIGHTED PROJECTS -->
+    <div class="featured-projects-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="n-section-title">03.</span> Featured Projects
+        </h2>
+        <p class="section-subtitle">Einige Projekte, die ich gebaut habe</p>
+      </div>
+
+      <div *ngFor="let project of highlightedProjects; let i = index" 
+           class="project-container"
+           [class.project-reverse]="i % 2 === 0">
+        
+        <!-- Project Image -->
+        <div class="project-image-container">
+          <div class="project-image-wrapper">
+            <img [src]="project.image" 
+                 [alt]="project.title"
+                 class="project-image"
+                 (error)="$event.target.src='assets/images/project-placeholder.jpg'">
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <a *ngIf="project.demoLink" 
+                   (click)="openExternalLink(project.demoLink)"
+                   class="project-link demo-link"
+                   title="Live Demo ansehen">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a *ngIf="project.githubLink" 
+                   (click)="openExternalLink(project.githubLink)"
+                   class="project-link github-link"
+                   title="GitHub Repository">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Info -->
+        <div class="project-info" [class.project-info-right]="i % 2 === 0" [class.project-info-left]="i % 2 !== 0">
+          <div class="project-content">
+            <p class="project-label">Featured Project</p>
+            <h3 class="project-title">{{ project.title }}</h3>
+            
+            <div class="project-description-box">
+              <p [innerHTML]="project.description"></p>
+            </div>
+            
+            <ul class="project-technologies" [class.justify-end]="i % 2 === 0" [class.justify-start]="i % 2 !== 0">
+              <li *ngFor="let tech of project.technologies" class="technology-item">
+                <span class="technology">{{ tech }}</span>
+              </li>
+            </ul>
+            
+            <div class="project-links" [class.justify-end]="i % 2 === 0" [class.justify-start]="i % 2 !== 0">
+              <a *ngIf="project.githubLink" 
+                 (click)="openExternalLink(project.githubLink)"
+                 class="project-action-link"
+                 title="GitHub Repository">
+                <i class="fab fa-github"></i>
+              </a>
+              <a *ngIf="project.demoLink" 
+                 (click)="openExternalLink(project.demoLink)"
+                 class="project-action-link"
+                 title="Live Demo ansehen">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTHER PROJECTS GRID -->
+    <div class="other-projects-section">
+      <div class="section-header">
+        <h3 class="section-title">
+          <span class="n-section-title">04.</span> Weitere Projekte
+        </h3>
+        <p class="section-subtitle">Weitere Dinge, die ich gebaut habe</p>
+      </div>
+
+      <div class="projects-grid">
+        <div *ngFor="let project of otherProjects" class="project-card">
+          <div class="project-card-header">
+            <div class="project-card-icon">
+              <i class="fas fa-folder"></i>
+            </div>
+            <div class="project-card-links">
+              <a *ngIf="project.githubLink" 
+                 (click)="openExternalLink(project.githubLink)"
+                 class="card-link"
+                 title="GitHub Repository">
+                <i class="fab fa-github"></i>
+              </a>
+              <a *ngIf="project.demoLink" 
+                 (click)="openExternalLink(project.demoLink)"
+                 class="card-link"
+                 title="Live Demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          
+          <h4 class="project-card-title">{{ project.title }}</h4>
+          <p class="project-card-description">{{ project.description }}</p>
+          
+          <ul class="project-card-technologies">
+            <li *ngFor="let tech of project.technologies" class="card-technology">
+              {{ tech }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTA SECTION -->
+    <div class="projects-cta">
+      <h3>Interesse an einer Zusammenarbeit?</h3>
+      <p>Ich würde mich freuen, über neue Projekte und Möglichkeiten zu sprechen.</p>
+      <a routerLink="/contact" class="cta-button">
+        Kontakt aufnehmen
+      </a>
+    </div>
+
+  </div>
+</section>

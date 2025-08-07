@@ -1,14 +1,22 @@
 <header class="header">
   <div class="container">
     <a routerLink="/" class="logo">
-      <span>Portfolio</span>
+      <span>Özgür Azap</span>
     </a>
     
     <nav class="nav">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      <a routerLink="/about" routerLinkActive="active">Über mich</a>
-      <a routerLink="/projects" routerLinkActive="active">Projekte</a>
-      <a routerLink="/contact" routerLinkActive="active">Kontakt</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <span class='nav-number'> </span>Home
+      </a>
+      <a routerLink="/about" routerLinkActive="active">
+        <span class='nav-number'> </span>Über mich
+      </a>
+      <a routerLink="/projects" routerLinkActive="active">
+        <span class='nav-number'> </span>Projekte
+      </a>
+      <a routerLink="/contact" routerLinkActive="active">
+        <span class='nav-number'> </span>Kontakt
+      </a>
     </nav>
     
     <button class="mobile-toggle" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen">

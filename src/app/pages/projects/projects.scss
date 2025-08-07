@@ -1,146 +1,208 @@
-// KOMMUNALVERWALTUNG DASHBOARD - Professional Styling f�r Axians IKVS
-// Remove @use statement - use global styles
+// KOMMUNALVERWALTUNG DASHBOARD - José Style Professional Design
+// Professional styling inspired by José's portfolio for AXIANS IKVS application
 
-// PROJECTS HERO SECTION
+// VARIABLES - José Style
+$Green: #64ffda;
+$LightNavy: #112240;
+$LightestSlate: #ccd6f6;
+$LightSlate: #a8b2d1;
+$Slate: #8892b0;
+$Navy: #0a192f;
+$CodeFont: 'SF Mono', 'Roboto Mono', Menlo, monospace;
+
+// KEYFRAMES
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(100, 255, 218, 0.6); }
+}
+
+// PROJECTS HERO SECTION - José Style
 .projects-hero {
-  background: var(--gradient-hero);
+  background: linear-gradient(135deg, $Navy 0%, $LightNavy 100%);
   text-align: center;
+  padding: 6rem 0;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%2364ffda" fill-opacity="0.05"><circle cx="30" cy="30" r="2"/></g></svg>');
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 2;
+  }
   
   .projects-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: var(--space-lg);
-    color: var(--text-primary);
+    margin-bottom: 2rem;
+    color: $LightestSlate;
+    
+    .text-gradient {
+      background: linear-gradient(135deg, $Green 0%, #64ccff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
   }
   
   .projects-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: var(--space-xl);
-    max-width: 800px;
+    color: $LightSlate;
+    margin-bottom: 3rem;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     
     strong {
-      color: var(--primary);
+      color: $Green;
       font-weight: 600;
+      font-family: $CodeFont;
     }
   }
   
-  // Stadt-Auswahl Buttons
+  // Stadt-Auswahl Buttons - José Style
   .city-selector {
     display: flex;
     justify-content: center;
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
     
     .city-button {
-      background: var(--gradient-card);
-      border: 2px solid var(--border);
-      color: var(--text-primary);
-      padding: var(--space-lg) var(--space-xl);
-      border-radius: var(--radius-lg);
+      background: rgba($LightNavy, 0.8);
+      border: 2px solid rgba($Green, 0.3);
+      color: $LightestSlate;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
       font-weight: 600;
       font-size: 1.1rem;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--space-sm);
-      backdrop-filter: blur(20px);
-      min-width: 180px;
+      position: relative;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
       
-      &:hover {
-        transform: translateY(-4px);
-        border-color: var(--primary);
-        box-shadow: var(--shadow-lg);
-        background: var(--gradient-primary);
-        color: white;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba($Green, 0.1) 0%, rgba($Green, 0.05) 100%);
+        border-radius: 6px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .population {
+        font-size: 0.85rem;
+        color: $Slate;
+        margin-top: 0.5rem;
+        font-family: $CodeFont;
+      }
+      
+      &:hover, &.active {
+        border-color: $Green;
+        color: $Green;
+        box-shadow: 0 20px 40px -15px rgba(100, 255, 218, 0.3);
+        transform: translateY(-3px);
+        
+        &::before {
+          opacity: 1;
+        }
         
         .population {
-          color: rgba(255, 255, 255, 0.9);
+          color: $LightSlate;
         }
       }
       
       &.active {
-        background: var(--gradient-primary);
-        border-color: var(--primary);
-        color: white;
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-        
-        .population {
-          color: rgba(255, 255, 255, 0.9);
-        }
-      }
-      
-      .population {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        font-weight: 500;
+        background: rgba($Green, 0.1);
+        border-color: $Green;
+        color: $Green;
       }
     }
   }
 }
 
-// KPI OVERVIEW SECTION
+// KPI OVERVIEW SECTION - José Style
 .kpi-overview {
-  background: var(--bg-secondary);
+  padding: 6rem 0;
+  background: $Navy;
   
   .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-xl);
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
     
     h2 {
       font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--text-primary);
+      color: $LightestSlate;
+      margin: 0;
+      
+      &::before {
+        content: '02.';
+        font-family: $CodeFont;
+        font-size: 1.2rem;
+        color: $Green;
+        margin-right: 1rem;
+      }
     }
     
     .comparison-toggle {
-      background: var(--bg-glass);
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-      padding: var(--space-md) var(--space-lg);
-      border-radius: var(--radius-lg);
-      font-weight: 500;
+      background: transparent;
+      border: 2px solid $Green;
+      color: $Green;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-family: $CodeFont;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.3s ease;
       
-      &:hover {
-        border-color: var(--primary);
-        color: var(--text-primary);
-        transform: translateY(-2px);
-      }
-      
-      &.active {
-        background: var(--gradient-primary);
-        border-color: var(--primary);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
+      &:hover, &.active {
+        background: rgba($Green, 0.1);
+        box-shadow: 0 0 20px rgba($Green, 0.3);
       }
     }
   }
   
-  // KPI Cards Grid
+  // KPI GRID - José Style
   .kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
     
     .kpi-card {
-      background: var(--gradient-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      text-align: center;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(20px);
+      background: rgba($LightNavy, 0.8);
+      border: 1px solid rgba($Green, 0.2);
+      border-radius: 8px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       position: relative;
       overflow: hidden;
       
@@ -149,438 +211,282 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 4px;
-        background: var(--gradient-primary);
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, $Green 0%, #64ccff 100%);
       }
       
       &:hover {
-        transform: translateY(-6px);
-        box-shadow: var(--shadow-xl);
-        border-color: rgba(99, 102, 241, 0.3);
+        border-color: rgba($Green, 0.5);
+        box-shadow: 0 20px 40px -15px rgba(100, 255, 218, 0.2);
+        transform: translateY(-5px);
       }
       
       h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        margin-bottom: var(--space-md);
+        font-size: 1rem;
+        color: $Green;
+        margin-bottom: 1rem;
+        font-family: $CodeFont;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
       }
       
       .kpi-value {
         font-size: 2.5rem;
         font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: var(--space-sm);
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: $LightestSlate;
+        margin-bottom: 0.5rem;
         
         &.positive {
-          color: var(--accent);
+          color: $Green;
         }
         
         &.negative {
-          color: #EF4444;
-        }
-        
-        &.score {
-          background: var(--gradient-primary);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          
-          .unit {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-          }
+          color: #ff6b6b;
         }
       }
       
       .kpi-meta {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-        font-weight: 500;
+        font-size: 0.9rem;
+        color: $Slate;
+        font-family: $CodeFont;
       }
       
-      // Spezifische Farben
-      &.budget::before { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
-      &.balance::before { background: linear-gradient(135deg, #10B981, #059669); }
-      &.performance::before { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
-      &.population::before { background: linear-gradient(135deg, #F59E0B, #D97706); }
-    }
-  }
-}
-
-// DEPARTMENTS SECTION
-.departments-section {
-  background: var(--bg-primary);
-  
-  h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-xl);
-  }
-  
-  .departments-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--space-lg);
-    
-    .department-card {
-      background: var(--gradient-card);
-      border: 1px solid var(--border);
-      border-left: 6px solid var(--primary);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(20px);
-      
-      &:hover {
-        transform: translateY(-4px) translateX(4px);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--primary);
+      &.budget {
+        border-left: 4px solid #64ccff;
       }
       
-      &.selected {
-        border-color: var(--primary);
-        box-shadow: var(--shadow-lg);
-        background: var(--gradient-primary);
-        color: white;
-        transform: translateY(-4px) translateX(4px);
-        
-        .dept-header h3,
-        .efficiency-value,
-        .metric-value {
-          color: white;
-        }
-        
-        .efficiency-label,
-        .metric-label {
-          color: rgba(255, 255, 255, 0.8);
-        }
+      &.balance {
+        border-left: 4px solid $Green;
       }
       
-      .dept-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: var(--space-lg);
-        
-        h3 {
-          font-size: 1.3rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin: 0;
-          flex: 1;
-        }
-        
-        .dept-efficiency {
-          text-align: right;
-          
-          .efficiency-value {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-          }
-          
-          .efficiency-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-          }
-        }
+      &.debt {
+        border-left: 4px solid #ff6b6b;
       }
       
-      .dept-metrics {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: var(--space-md);
-        margin-bottom: var(--space-lg);
-        
-        .metric {
-          text-align: center;
-          
-          .metric-label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--space-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-          }
-          
-          .metric-value {
-            display: block;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-          }
-        }
-      }
-      
-      .dept-progress {
-        .progress-bar {
-          width: 100%;
-          height: 8px;
-          background: var(--bg-tertiary);
-          border-radius: var(--radius-sm);
-          overflow: hidden;
-          
-          .progress-fill {
-            height: 100%;
-            border-radius: var(--radius-sm);
-            transition: all 0.6s ease;
-            background: var(--gradient-primary);
-          }
-        }
+      &.efficiency {
+        border-left: 4px solid #ffd93d;
       }
     }
   }
 }
 
-// TECHNOLOGY SHOWCASE
-.tech-showcase {
-  background: var(--bg-secondary);
+// CHARTS SECTION - José Style
+.charts-section {
+  padding: 6rem 0;
+  background: $LightNavy;
   
-  h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-xl);
-  }
-  
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-lg);
-    margin-bottom: var(--space-xl);
+  .section-header {
+    margin-bottom: 3rem;
     
-    .tech-card {
-      background: var(--gradient-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      backdrop-filter: blur(20px);
-      transition: all 0.3s ease;
+    h2 {
+      font-size: 2.5rem;
+      color: $LightestSlate;
+      margin-bottom: 1rem;
       
-      &:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-        border-color: rgba(99, 102, 241, 0.3);
+      &::before {
+        content: '03.';
+        font-family: $CodeFont;
+        font-size: 1.2rem;
+        color: $Green;
+        margin-right: 1rem;
       }
-      
-      h3 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: var(--space-md);
-      }
-      
-      p {
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin-bottom: var(--space-md);
-      }
-      
-      .code-preview {
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        padding: var(--space-md);
-        
-        code {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 0.8rem;
-          color: var(--accent);
-          line-height: 1.5;
-        }
-      }
-    }
-  }
-  
-  .demo-controls {
-    background: var(--gradient-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
-    text-align: center;
-    backdrop-filter: blur(20px);
-    
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: var(--space-md);
     }
     
     p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: var(--space-lg);
-      font-size: 1.1rem;
-      
-      strong {
-        color: var(--primary);
-        font-weight: 600;
-      }
+      color: $LightSlate;
+      font-size: 1.2rem;
+      max-width: 800px;
     }
+  }
+  
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
     
-    .control-buttons {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-md);
-      flex-wrap: wrap;
+    .chart-card {
+      background: rgba($Navy, 0.8);
+      border: 1px solid rgba($Green, 0.2);
+      border-radius: 8px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       
-      .demo-button {
-        background: var(--bg-glass);
-        border: 2px solid var(--border);
-        color: var(--text-secondary);
-        padding: var(--space-md) var(--space-lg);
-        border-radius: var(--radius-lg);
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-        
-        &:hover {
-          transform: translateY(-2px);
-          border-color: var(--primary);
-          color: var(--text-primary);
-          box-shadow: var(--shadow-md);
-        }
-        
-        &.active {
-          background: var(--gradient-primary);
-          border-color: var(--primary);
-          color: white;
-          transform: translateY(-2px);
-          box-shadow: var(--shadow-md);
-        }
+      &:hover {
+        border-color: rgba($Green, 0.5);
+        box-shadow: 0 20px 40px -15px rgba(100, 255, 218, 0.2);
+        transform: translateY(-5px);
+      }
+      
+      h3 {
+        color: $LightestSlate;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+      }
+      
+      .chart-container {
+        height: 300px;
+        position: relative;
       }
     }
   }
 }
 
-// RESPONSIVE DESIGN
+// SYSTEM INFO SECTION - José Style
+.system-info {
+  padding: 6rem 0;
+  background: $Navy;
+  
+  .section-header {
+    margin-bottom: 3rem;
+    
+    h2 {
+      font-size: 2.5rem;
+      color: $LightestSlate;
+      margin-bottom: 1rem;
+      
+      &::before {
+        content: '04.';
+        font-family: $CodeFont;
+        font-size: 1.2rem;
+        color: $Green;
+        margin-right: 1rem;
+      }
+    }
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    
+    .info-card {
+      background: rgba($LightNavy, 0.6);
+      border: 1px solid rgba($Green, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        border-color: rgba($Green, 0.5);
+        transform: translateY(-3px);
+      }
+      
+      .tech-icon {
+        width: 3rem;
+        height: 3rem;
+        background: linear-gradient(135deg, $Green 0%, #64ccff 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        color: $Navy;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      
+      h4 {
+        color: $LightestSlate;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+      
+      p {
+        color: $LightSlate;
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      
+      .version {
+        color: $Green;
+        font-family: $CodeFont;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+
+// RESPONSIVE DESIGN - José Style
 @media (max-width: 768px) {
   .projects-hero {
+    padding: 4rem 0;
+    
     .projects-title {
       font-size: 2.5rem;
     }
     
+    .projects-subtitle {
+      font-size: 1.2rem;
+    }
+    
     .city-selector {
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-md);
+      gap: 1rem;
       
       .city-button {
-        width: 100%;
-        max-width: 300px;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
       }
     }
   }
   
-  .kpi-overview {
-    .section-header {
-      flex-direction: column;
-      gap: var(--space-md);
-      text-align: center;
-      
-      h2 {
-        font-size: 2rem;
-      }
-    }
+  .kpi-overview, .charts-section, .system-info {
+    padding: 4rem 0;
     
-    .kpi-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-md);
-    }
-  }
-  
-  .departments-section {
-    h2 {
+    .section-header h2 {
       font-size: 2rem;
     }
+  }
+  
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     
-    .departments-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-      
-      .department-card {
-        .dept-metrics {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
+    .chart-card {
+      padding: 1.5rem;
     }
   }
   
-  .tech-showcase {
-    h2 {
-      font-size: 2rem;
-    }
-    
-    .tech-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-    }
-    
-    .demo-controls {
-      .control-buttons {
-        flex-direction: column;
-        align-items: center;
-        
-        .demo-button {
-          width: 100%;
-          max-width: 280px;
-          justify-content: center;
-        }
-      }
-    }
+  .info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
   }
 }
 
-@media (max-width: 480px) {
-  .projects-hero {
-    .projects-title {
-      font-size: 2rem;
-    }
-    
-    .projects-subtitle {
-      font-size: 1.1rem;
-    }
+// ANIMATIONS - José Style
+.section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .kpi-overview {
-    .kpi-grid {
-      grid-template-columns: 1fr;
-      
-      .kpi-card {
-        .kpi-value {
-          font-size: 2rem;
-        }
-      }
-    }
+}
+
+// Additional animations for enhanced UX
+.kpi-card, .chart-card, .info-card {
+  animation: slideIn 0.6s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-  
-  .departments-section {
-    .departments-grid {
-      .department-card {
-        padding: var(--space-lg);
-        
-        .dept-metrics {
-          grid-template-columns: 1fr;
-          gap: var(--space-sm);
-        }
-      }
-    }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
