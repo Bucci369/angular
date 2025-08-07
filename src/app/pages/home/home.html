@@ -1,0 +1,52 @@
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Frontend Developer
+        <span class="highlight">Angular Spezialist</span>
+      </h1>
+      <p class="hero-subtitle">
+        Moderne Webanwendungen für die digitale Transformation von Kommunen und Unternehmen
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/projects" class="btn-primary">Projekte ansehen</a>
+        <a routerLink="/contact" class="btn-secondary">Kontakt aufnehmen</a>
+      </div>
+    </div>
+    
+    <div class="hero-visual">
+      <div class="tech-stack">
+        <div class="tech-item" *ngFor="let tech of technologies">
+          <mat-icon>{{ tech.icon }}</mat-icon>
+          <span>{{ tech.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2>Fähigkeiten für moderne Verwaltungssoftware</h2>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <div class="feature-icon">
+          <mat-icon>{{ feature.icon }}</mat-icon>
+        </div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" *ngFor="let stat of stats">
+        <div class="stat-number">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    </div>
+  </div>
+</section>
